@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions 
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+    xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+    xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+    xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:tns="http://com.Prestamo" 
+    targetNamespace="http://com.Prestamo">
+    
+    <wsdl:types>
+        <xs:schema targetNamespace="http://com.Prestamo" elementFormDefault="qualified">
+            <xs:include schemaLocation="Prestamo.xsd"/>
+            <!--xs:include schemaLocation="Valores.xsd"/-->
+        </xs:schema>
+    </wsdl:types>
+
+    <!-- Mensajes para las operaciones -->
+    
+    <!-- Crear Préstamo -->
+    <wsdl:message name="CrearPrestamoRequest">
+        <wsdl:part name="parameter" element="tns:CrearPrestamo"/>
+    </wsdl:message>
+    <wsdl:message name="CrearPrestamoResponse">
+        <wsdl:part name="parameter" element="tns:RESPUESTA"/>
+    </wsdl:message>
+
+    <!-- Actualizar Préstamo -->
+    <wsdl:message name="ActualizarPrestamoRequest">
+        <wsdl:part name="parameter" element="tns:ActualizarPrestamo"/>
+    </wsdl:message>
+    <wsdl:message name="ActualizarPrestamoResponse">
+        <wsdl:part name="parameter" element="tns:RESPUESTA"/>
+    </wsdl:message>
+
+    <!-- Eliminar Préstamo -->
+    <wsdl:message name="EliminarPrestamoRequest">
+        <wsdl:part name="parameter" element="tns:EliminarPrestamo"/>
+    </wsdl:message>
+    <wsdl:message name="EliminarPrestamoResponse">
+        <wsdl:part name="parameter" element="tns:RESPUESTA"/>
+    </wsdl:message>
+
+    <!-- Consultar Préstamo -->
+    <wsdl:message name="ConsultarPrestamoRequest">
+        <wsdl:part name="parameter" element="tns:ConsultarPrestamo"/>
+    </wsdl:message>
+    <wsdl:message name="ConsultarPrestamoResponse">
+        <wsdl:part name="parameter" element="tns:RESPUESTA"/>
+    </wsdl:message>
+
+    <!-- Declaración del portType -->
+    <wsdl:portType name="PrestamoPortType">
+        <!-- Operación crear préstamo -->
+        <wsdl:operation name="CrearPrestamo">
+            <wsdl:input message="tns:CrearPrestamoRequest"/>
+            <wsdl:output message="tns:CrearPrestamoResponse"/>
+        </wsdl:operation>
+
+        <!-- Operación actualizar préstamo -->
+        <wsdl:operation name="ActualizarPrestamo">
+            <wsdl:input message="tns:ActualizarPrestamoRequest"/>
+            <wsdl:output message="tns:ActualizarPrestamoResponse"/>
+        </wsdl:operation>
+
+        <!-- Operación eliminar préstamo -->
+        <wsdl:operation name="EliminarPrestamo">
+            <wsdl:input message="tns:EliminarPrestamoRequest"/>
+            <wsdl:output message="tns:EliminarPrestamoResponse"/>
+        </wsdl:operation>
+
+        <!-- Operación consultar préstamo -->
+        <wsdl:operation name="ConsultarPrestamo">
+            <wsdl:input message="tns:ConsultarPrestamoRequest"/>
+            <wsdl:output message="tns:ConsultarPrestamoResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <!-- Declaración del binding -->
+    <wsdl:binding name="PrestamoBinding" type="tns:PrestamoPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+        <wsdl:operation name="CrearPrestamo">
+            <soap:operation soapAction="http://com.Prestamo/CrearPrestamo"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="ActualizarPrestamo">
+            <soap:operation soapAction="http://com.Prestamo/ActualizarPrestamo"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="EliminarPrestamo">
+            <soap:operation soapAction="http://com.Prestamo/EliminarPrestamo"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+
+        <wsdl:operation name="ConsultarPrestamo">
+            <soap:operation soapAction="http://com.Prestamo/ConsultarPrestamo"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="PrestamoService">
+        <wsdl:port name="PrestamoPort" binding="tns:PrestamoBinding">
+            <soap:address location="http://localhost:8081/ws/PrestamoService"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

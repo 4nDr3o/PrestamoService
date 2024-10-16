@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"  
+           xmlns:Valores="https://www.example.com/Valores" 
+           xmlns:tns="http://com.Prestamo"
+           targetNamespace="http://com.Prestamo"
+           elementFormDefault="qualified" 
+           attributeFormDefault="unqualified">
+
+    <!-- Importamos el esquema de Valores -->
+    <xs:import namespace="https://www.example.com/Valores" schemaLocation="Valores.xsd"/>
+
+    <!-- Elemento CrearPrestamo -->
+    <xs:element name="CrearPrestamo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Valores:ID_LIBRO"/>
+                <xs:element name="ID_USUARIO">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="[A-Z]{3,4}[0-9]{4}[A-Za-z]{2,3}"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element ref="Valores:FECHA"/>
+                <xs:element ref="Valores:FECHA"/>
+                <xs:element ref="Valores:ESTADO"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Elemento ActualizarPrestamo -->
+    <xs:element name="ActualizarPrestamo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_PRESTAMO" type="xs:string"/>
+                <xs:element name="FECHA_DEVOLUCION" type="xs:date"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Elemento EliminarPrestamo -->
+    <xs:element name="EliminarPrestamo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_PRESTAMO" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Elemento ConsultarPrestamo -->
+    <xs:element name="ConsultarPrestamo">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_LIBRO" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Elemento RESPUESTA -->
+    <xs:element name="RESPUESTA">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="ID_PR">
+                    <xs:simpleType>
+                        <xs:restriction base="xs:string">
+                            <xs:pattern value="USR-[0-9]{4}-[0-9]{3}X"/>
+                        </xs:restriction>
+                    </xs:simpleType>
+                </xs:element>
+                <xs:element name="Mensaje" type="xs:string" minOccurs="0"/>
+                <xs:element ref="Valores:ID_LIBRO"/>
+                <xs:element ref="Valores:ESTADO"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
